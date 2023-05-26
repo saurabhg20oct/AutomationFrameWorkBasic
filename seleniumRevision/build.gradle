@@ -1,0 +1,51 @@
+
+apply plugin: "java"
+apply plugin: "application"
+apply plugin: "java-library-distribution"
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    testImplementation(platform("org.junit:junit-bom:5.9.1"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+    implementation("org.seleniumhq.selenium:selenium-java:4.6.0")
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+    implementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
+
+}
+
+
+
+    mainClassName = "com.java.naukri.scheduler.NaukriProfileUpdater"
+
+task execute(type:JavaExec) {
+    mainClass = mainClassName
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+defaultTasks 'jar'
+
+
+sourceCompatibility = '1.18'
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
+jar {
+    manifest {
+        attributes "Main-Class": "$mainClassName"
+    }
+}
+task fatJar(type: Jar) {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    manifest.from jar.manifest
+    //classifier = 'all'
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    } {
+        exclude "META-INF/*.SF"
+        exclude "META-INF/*.DSA"
+        exclude "META-INF/*.RSA"
+    }
+    with jar
+}

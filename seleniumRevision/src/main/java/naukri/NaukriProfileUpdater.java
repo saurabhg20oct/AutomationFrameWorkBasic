@@ -44,7 +44,9 @@ public class NaukriProfileUpdater {
     List<String> profileSummary = Arrays.asList(profileSummary1,profileSummary2);
     List<String> resume = Arrays.asList(resumePathDocx,resumePathPDF);
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
+    List<String> profileSummary = Arrays.asList(profileSummary1,profileSummary2);
+        List<String> resume = Arrays.asList(resumePathDocx,resumePathPDF);
         WebDriver driver = new ChromeDriver(disableImages());
         driver.get("https://www.naukri.com/");
         driver.manage().window().maximize();
@@ -61,16 +63,10 @@ public class NaukriProfileUpdater {
         driver.findElement(viewProfile).click();
         waitForPageToLoad(driver,60,profileLoaded);
         double num = Math.random();
-        int myRandInt = (int)(num*10+1);
-        String resumeHeadline;
-        if(myRandInt%2==0) {
-            driver.findElement(uploadCV).sendKeys(resumePathPDF);
-            resumeHeadline = profileSummary1;
-        }
-        else{
-            driver.findElement(uploadCV).sendKeys(resumePathDocx);
-            resumeHeadline = profileSummary2;
-        }
+        int myRandInt  = new Random().nextInt(resume.size());
+        String resumeHeadline = profileSummary.get(myRandInt);
+        driver.findElement(uploadCV).sendKeys(resume.get(myRandInt));
+        waitForElementToBeClickable(driver,60,editResumeHeadLine);
         driver.findElement(editResumeHeadLine).click();
         WebElement textArea= driver.findElement(resumeHeadLineTextArea);
         textArea.click();
@@ -85,6 +81,7 @@ public class NaukriProfileUpdater {
         driver.findElement(logout).click();
         waitForElementToBeClickable(driver,60,login);
         afterSuite(driver);
+    
     }
 
     public static void waitForPageToLoad(WebDriver driver, int seconds, By by){

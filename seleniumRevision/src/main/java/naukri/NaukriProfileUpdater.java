@@ -1,8 +1,5 @@
 package naukri;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.*;
@@ -28,25 +25,50 @@ public class NaukriProfileUpdater {
     public  static final By modalTitle = By.xpath("//div[@title='Saurabh Garg']");
     public  static final By logout = By.xpath("//a[@title='Logout']");
 
+    public static final By profileSummary = By.xpath("//span[text()='Profile summary']/parent::li");
+    public static final By getProfileSummaryEditBtn = By.xpath("//span[text()='Profile summary']/following-sibling::span[@class='edit icon']");
+    public static final By profileSummaryEditTextArea = By.xpath("//textarea[contains(@class,'profileSummaryTxt')]");
+
     /*
     Profile Details to be entered here
     */
-    public static final String username= "<Enter Your Username>";
-    public static final String password = "<Enter Your Password>";
+    public static final String username= "<Edit_Username>";
+    public static final String password = "<Edit_Password>";
     public static final String resumePathDocx = System.getProperty("user.dir") + "/Saurabh_Garg_Resume_Naukri.docx";
     public static final String resumePathPDF = System.getProperty("user.dir") + "/Saurabh_Garg_Resume_Naukri.pdf";
-    public static final String profileSummary1 = "SDET engineer with 8+ years of experience in leading test operations. "
+    public static final String resumeHeadline1 = "SDET engineer with 8+ years of experience in leading test operations. "
             + "Lead and groomed teams of varying sizes in designing complex test cases & scenarios. Maintained staging "
             + "servers and optimized documentation & reporting preparation procedures.";
-    public static final String profileSummary2 = "Proven ability to build, deploy, run, and manage individual applications. Accustomed to " +
+    public static final String profileSummaryText1 = "Proven ability to build, deploy, run, and manage individual applications. Accustomed to " +
             "executing scenarios using Cucumber, working with gradle as a build management tool, " +
             "Git for version control, Jenkins for CI/CD, and JIRA for defect tracking.";
-    List<String> profileSummary = Arrays.asList(profileSummary1,profileSummary2);
-    List<String> resume = Arrays.asList(resumePathDocx,resumePathPDF);
+
+    public static final String profileSummaryText2 = "Test Lead with 8+ years of experience in testing software applications in Manual and Automation and SOA Testing. \n"
+            + "Experienced in leading testing effort with the Product team, Development team, onshore and offshore QA team. \n"
+            + "Managing design, development, and execution of the entire test process, track and report the progress of test execution. \n"
+            + "Document and coordinate the detailed execution plan for all cycles to support testing.";
+
+    public static final String resumeHeadline2 = "A highly motivated Test Engineer, with over 8 years of experience in testing and development in multiple domains. \n"
+            + "Worked extensively with the various customers and Product Organizations. \n"
+            + "Very good exposure to complete life cycle development, design and testing of enterprise softwares.";
+
 
     public static void main(String[] args) {
-    List<String> profileSummary = Arrays.asList(profileSummary1,profileSummary2);
-        List<String> resume = Arrays.asList(resumePathDocx,resumePathPDF);
+        List<String> resumeHeadline = Arrays.asList(resumeHeadline1,resumeHeadline2,profileSummaryText1,profileSummaryText2);
+        List<String> resume = Arrays.asList(resumePathDocx,resumePathPDF,resumePathPDF);
+        int myRandInt  = getRandomNumber01(0,99);
+
+        System.out.println("1===>" + myRandInt);
+        String resumeHeadlineSelected = resumeHeadline.get(myRandInt);
+
+        myRandInt  = getRandomNumber01(199,9999);
+        System.out.println("2===>" + myRandInt);
+        String resumePath = resume.get(myRandInt);
+
+        myRandInt  = getRandomNumber01(199,9999);
+        System.out.println("3===>" + myRandInt);
+        String profileSummarySelected = resumeHeadline.get(myRandInt);
+
         WebDriver driver = new ChromeDriver(disableImages());
         driver.get("https://www.naukri.com/");
         driver.manage().window().maximize();
@@ -62,26 +84,32 @@ public class NaukriProfileUpdater {
         waitForPageToLoad(driver,60,pageLoadedToProfile);
         driver.findElement(viewProfile).click();
         waitForPageToLoad(driver,60,profileLoaded);
-        double num = Math.random();
-        int myRandInt  = new Random().nextInt(resume.size());
-        String resumeHeadline = profileSummary.get(myRandInt);
-        driver.findElement(uploadCV).sendKeys(resume.get(myRandInt));
+        driver.findElement(uploadCV).sendKeys(resumePath);
         waitForElementToBeClickable(driver,60,editResumeHeadLine);
         driver.findElement(editResumeHeadLine).click();
         WebElement textArea= driver.findElement(resumeHeadLineTextArea);
         textArea.click();
         textArea.clear();
-        textArea.sendKeys(resumeHeadline);
+
+        textArea.sendKeys(resumeHeadlineSelected);
         driver.findElement(saveBtn).click();
         waitForPageToLoad(driver,60,profileLoaded);
+        //driver.findElement(profileSummary).click();
+        WebElement editBtn = driver.findElement(getProfileSummaryEditBtn);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center', inline: 'nearest'})", editBtn);
+        waitForElementToBeClickable(driver,60,getProfileSummaryEditBtn);
+        editBtn.click();
+        textArea = driver.findElement(profileSummaryEditTextArea);
+        textArea.click();
+        textArea.clear();
+        textArea.sendKeys(profileSummarySelected);
         driver.navigate().refresh();
-        waitForPageToLoad(driver,60,profileLoaded);
+        waitForPageToLoad(driver,60,topSideProfile);
         driver.findElement(topSideProfile).click();
         waitForPageToLoad(driver,60,modalTitle);
         driver.findElement(logout).click();
         waitForElementToBeClickable(driver,60,login);
         afterSuite(driver);
-    
     }
 
     public static void waitForPageToLoad(WebDriver driver, int seconds, By by){
@@ -123,5 +151,8 @@ public class NaukriProfileUpdater {
             driver.close();
             driver.quit();
         }
+    }
+    public static int getRandomNumber01(int min, int max) {
+        return (int) ((Math.random() * (max - min)) + min)%3;
     }
 }

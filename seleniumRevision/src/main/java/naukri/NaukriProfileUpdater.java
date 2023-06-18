@@ -56,16 +56,16 @@ public class NaukriProfileUpdater {
     public static void main(String[] args) {
         List<String> resumeHeadline = Arrays.asList(resumeHeadline1,resumeHeadline2,profileSummaryText1,profileSummaryText2);
         List<String> resume = Arrays.asList(resumePathDocx,resumePathPDF,resumePathPDF);
-        int myRandInt  = getRandomNumber01(0,99);
+        int myRandInt  = getRandomNumber01(0,99,4);
 
         System.out.println("1===>" + myRandInt);
         String resumeHeadlineSelected = resumeHeadline.get(myRandInt);
 
-        myRandInt  = getRandomNumber01(199,9999);
+        myRandInt  = getRandomNumber01(199,9999,2);
         System.out.println("2===>" + myRandInt);
         String resumePath = resume.get(myRandInt);
 
-        myRandInt  = getRandomNumber01(199,9999);
+        myRandInt  = getRandomNumber01(199,9999,4);
         System.out.println("3===>" + myRandInt);
         String profileSummarySelected = resumeHeadline.get(myRandInt);
 
@@ -152,7 +152,7 @@ public class NaukriProfileUpdater {
             driver.quit();
         }
     }
-    public static int getRandomNumber01(int min, int max) {
-        return (int) ((Math.random() * (max - min)) + min)%3;
+    public static int getRandomNumber01(int min, int max,int mod) {
+        return (int) ((Math.random() * (max - min)) + min)%mod;
     }
 }

@@ -1,4 +1,4 @@
-package com.trifacta.core;
+package naukri;
 
 import org.openqa.selenium.By;
 

@@ -26,8 +26,8 @@ public interface NaukriConstants {
      By getProfileSummaryEditBtn = By.xpath("//span[text()='Profile summary']/following-sibling::span[@class='edit icon']");
      By profileSummaryEditTextArea = By.xpath("//textarea[contains(@class,'profileSummaryTxt')]");
 
-     String username= "garg.saurabh201090@gmail.com";
-     String password = "garg7417343554";
+     String username= "<UserName>";
+     String password = "<UserPassword>";
      String resumePathDocx = System.getProperty("user.dir") + "/Saurabh_Garg_Resume_Naukri.docx";
      String resumePathPDF = System.getProperty("user.dir") + "/Saurabh_Garg_Resume_Naukri.pdf";
      String resumeHeadline1 = "SDET engineer with 8+ years of experience in leading test operations. "

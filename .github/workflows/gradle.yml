@@ -2,9 +2,11 @@ name: Build and Run NaukriProfileUpdater
 
 on:
   schedule:
+    # 8:00 AM IST = 2:30 AM UTC
     - cron: "30 2 * * *"
-    - cron: "30 14 * * *" 
-  workflow_dispatch:
+    # 8:00 PM IST = 2:30 PM UTC
+    - cron: "30 14 * * *"
+  workflow_dispatch: # manual trigger button
 
 jobs:
   build-and-run:
@@ -14,20 +16,33 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Java 17
+      - name: Set up Java 21 (latest LTS)
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '17'
+          java-version: '21'
           cache: gradle
+
+      - name: Upgrade system packages
+        run: |
+          sudo apt-get update
+          sudo apt-get -y upgrade
+
+      - name: Install Google Chrome
+        run: |
+          sudo apt-get install -y google-chrome-stable
 
       - name: Make gradlew executable
         run: chmod +x seleniumRevision/gradlew
 
-      - name: Run Gradle build
+      - name: Upgrade Gradle wrapper
         working-directory: seleniumRevision
-        run: ./gradlew clean build
+        run: ./gradlew wrapper --gradle-version 8.10.2 --distribution-type all
 
-      - name: Execute NaukriProfileUpdater
+      - name: Build with Gradle
+        working-directory: seleniumRevision
+        run: ./gradlew clean build --stacktrace
+
+      - name: Run NaukriProfileUpdater
         working-directory: seleniumRevision
         run: ./gradlew run --args='naukri.NaukriProfileUpdater'

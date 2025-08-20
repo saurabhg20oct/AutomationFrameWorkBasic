@@ -1,20 +1,17 @@
-name: Clean Old Workflow Runs
+name: Cleanup Old Workflow Runs
 
 on:
   schedule:
-    # Runs at 1:00 AM UTC daily
-    - cron: '0 1 * * *'
-  workflow_dispatch: # Allows manual triggering
+    - cron: "0 3 * * *"   # daily at 3:00 AM UTC
+  workflow_dispatch:
 
 jobs:
   cleanup:
     runs-on: ubuntu-latest
-
     steps:
       - name: Clean workflow runs
         uses: dmvict/clean-workflow-runs@v1.0.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          workflow_id: 'NaukriProfileUpdater.yml' # Replace with your workflow filename
-          save_min_runs_number: 3  # Retain the latest 3 runs
-          dry: false  # Set to true for a dry run (no deletions)
+          save_min_runs_number: 3  # Keep only latest 3 runs
+          dry: false

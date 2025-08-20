@@ -33,20 +33,25 @@ public class NaukriProfileUpdater implements NaukriConstants {
         driver.manage().window().maximize();
         driver.get("https://www.naukri.com");
         waitForPageToLoad(driver,60,login);
-        //takeScreenShot(driver.findElement(login),"abc.png");
+        takeScreenshot(driver, "screenshots", "JobseekerLogin");
         
         driver.findElement(login).click();
         waitForPageToLoad(driver,60, usernameInput);
         driver.findElement(usernameInput)
                 .sendKeys(secretUsername);
+        takeScreenshot(driver, "screenshots", "PreLoginUsernameEntered");
         driver.findElement(passwordInput)
                 .sendKeys(secretPassword);
+        takeScreenshot(driver, "screenshots", "PreLoginPwdEntered");
         driver.findElement(loginBtn).click();
+        takeScreenshot(driver, "screenshots", "PostLogin");
         waitForPageToLoad(driver,60,pageLoadedToProfile);
         System.out.println("Logged in to Portal, Profile Page Loaded");
+        takeScreenshot(driver, "screenshots", "ProfileLoaded");
         driver.findElement(viewProfile).click();
         waitForPageToLoad(driver,60,profileLoaded);
         driver.findElement(uploadCV).sendKeys(resumePath);
+        takeScreenshot(driver, "screenshots", "CvUploaded");
         waitForElementToBeClickable(driver,60,editResumeHeadLine);
         System.out.println("CV Uploaded, Going to update Resume headline");
         driver.findElement(editResumeHeadLine).click();
@@ -78,6 +83,33 @@ public class NaukriProfileUpdater implements NaukriConstants {
         waitForElementToBeClickable(driver,60,login);
         System.out.println(" Logged out, Good bye for now :) ");
         afterSuite(driver);
+    }
+    public static Path takeScreenshot(WebDriver driver, String folderPath, String filePrefix) {
+        try {
+            // Ensure folder exists
+            Path folder = Paths.get(folderPath);
+            if (!Files.exists(folder)) {
+                Files.createDirectories(folder);
+            }
+
+            // Timestamp for uniqueness
+            String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
+
+            // File name
+            String fileName = (filePrefix != null ? filePrefix + "_" : "") + timestamp + ".png";
+            Path screenshotPath = folder.resolve(fileName);
+
+            // Take screenshot
+            File srcFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            Files.copy(srcFile.toPath(), screenshotPath);
+
+            System.out.println("Screenshot saved at: " + screenshotPath.toAbsolutePath());
+            return screenshotPath;
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public static void waitForPageToLoad(WebDriver driver, int seconds, By by){

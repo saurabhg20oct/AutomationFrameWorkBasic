@@ -2,7 +2,6 @@ name: Build and Run NaukriProfileUpdater
 
 on:
   schedule:
-    # Runs at 08:00 and 20:00 UTC every day
     - cron: "0 8 * * *"
     - cron: "0 20 * * *"
     workflow_dispatch:

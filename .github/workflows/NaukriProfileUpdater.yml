@@ -1,4 +1,4 @@
-name: Build and Run NaukriProfileUpdater
+name: NaukriProfileUpdater
 
 on:
   schedule:

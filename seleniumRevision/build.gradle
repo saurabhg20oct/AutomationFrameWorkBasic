@@ -18,7 +18,7 @@ dependencies {
 
 
 
-    mainClassName = "com.java.naukri.scheduler.NaukriProfileUpdater"
+mainClassName = "naukri.NaukriProfileUpdater"
 
 task execute(type:JavaExec) {
     mainClass = mainClassName

@@ -95,6 +95,11 @@ public class NaukriProfileUpdater implements NaukriConstants {
         options.addArguments("--remote-allow-origins=*");
         options.addArguments("--headless=new");
         options.addArguments("--incognito");
+        options.addArguments("--headless=new");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--disable-gpu");
+        options.addArguments("--window-size=1920,1080");
         HashMap<String, Object> imagesMap = new HashMap<>();
         imagesMap.put("images",1);
         HashMap<String, Object> prefmap = new HashMap<>();

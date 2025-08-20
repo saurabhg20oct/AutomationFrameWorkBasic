@@ -2,8 +2,8 @@ name: Build and Run NaukriProfileUpdater
 
 on:
   schedule:
-    - cron: "0 8 * * *"
-    - cron: "0 20 * * *"
+    - cron: "30 2 * * *"
+    - cron: "30 14 * * *" 
   workflow_dispatch:
 
 jobs:
@@ -22,10 +22,12 @@ jobs:
           cache: gradle
 
       - name: Make gradlew executable
-        run: chmod +x gradlew
+        run: chmod +x seleniumRevision/gradlew
 
       - name: Run Gradle build
+        working-directory: seleniumRevision
         run: ./gradlew clean build
 
       - name: Execute NaukriProfileUpdater
+        working-directory: seleniumRevision
         run: ./gradlew run --args='naukri.NaukriProfileUpdater'

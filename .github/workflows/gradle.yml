@@ -45,4 +45,7 @@ jobs:
 
       - name: Run NaukriProfileUpdater
         working-directory: seleniumRevision
-        run: ./gradlew run --args='naukri.NaukriProfileUpdater'
+        run: ./gradlew run --args="$NAUKRI_USERNAME $NAUKRI_PASSWORD naukri.NaukriProfileUpdater"
+        env:
+          NAUKRI_USERNAME: ${{ secrets.NAUKRI_USERNAME }}
+          NAUKRI_PASSWORD: ${{ secrets.NAUKRI_PASSWORD }}

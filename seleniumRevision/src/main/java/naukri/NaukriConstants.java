@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface NaukriConstants {
 
-     By login = By.xpath("//a[@title='Jobseeker Login']");
+     By login = By.xpath("//a[contains(text(),'Login') or contains(@title,'Jobseeker Login')]");
      By usernameInput = By.xpath("//label[text()='Email ID / Username']/following-sibling::input");
      By passwordInput = By.xpath("//label[text()='Password']/following-sibling::input");
      By loginBtn = By.xpath("//button[contains(@class,'loginButton')]");

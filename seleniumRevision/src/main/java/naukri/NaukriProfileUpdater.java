@@ -45,6 +45,8 @@ public class NaukriProfileUpdater implements NaukriConstants {
         WebDriver driver = new ChromeDriver(disableImages());
         driver.manage().window().maximize();
         driver.get("https://www.naukri.com");
+        
+        takeScreenshot(driver, "screenshots", "Naukri.com Page Loaded");
         waitForPageToLoad(driver,60,login);
         takeScreenshot(driver, "screenshots", "JobseekerLogin");
         
@@ -126,11 +128,18 @@ public class NaukriProfileUpdater implements NaukriConstants {
     }
 
     public static void waitForPageToLoad(WebDriver driver, int seconds, By by){
+        try{
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
         wait.until((ExpectedCondition<Boolean>) wd ->
                 ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
         wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(by));
+        } catch (Exception e){
+         System.out.println("Timeout waiting for page or element: " + by);
+        } finally {
+        takeScreenshot(driver, "screenshots", "timeout_"+ getRandomNumber01(199,9999,5));
+        }
+        
     }
 
     public static void waitForAlert(WebDriver driver, int seconds){

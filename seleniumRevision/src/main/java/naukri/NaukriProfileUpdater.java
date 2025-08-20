@@ -12,6 +12,8 @@ import java.util.HashMap;
 
 public class NaukriProfileUpdater implements NaukriConstants {
     public static void main(String[] args) {
+        String secretUsername = System.getenv("NAUKRI_USERNAME");
+        String secretPassword = System.getenv("NAUKRI_PASSWORD");
         int myRandInt  = getRandomNumber01(0,99,5);
         String resumeHeadlineSelected = resumeHeadline.get(myRandInt);
         myRandInt  = getRandomNumber01(199,9999,2);
@@ -32,12 +34,13 @@ public class NaukriProfileUpdater implements NaukriConstants {
         driver.get("https://www.naukri.com");
         waitForPageToLoad(driver,60,login);
         //takeScreenShot(driver.findElement(login),"abc.png");
+        
         driver.findElement(login).click();
         waitForPageToLoad(driver,60, usernameInput);
         driver.findElement(usernameInput)
-                .sendKeys(username);
+                .sendKeys(secretUsername);
         driver.findElement(passwordInput)
-                .sendKeys(password);
+                .sendKeys(secretPassword);
         driver.findElement(loginBtn).click();
         waitForPageToLoad(driver,60,pageLoadedToProfile);
         System.out.println("Logged in to Portal, Profile Page Loaded");

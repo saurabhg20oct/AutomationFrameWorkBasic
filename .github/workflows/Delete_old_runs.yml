@@ -1,0 +1,19 @@
+name: Cleanup Old Workflow Runs
+
+on:
+  schedule:
+    # Run once a day at 3:00 AM UTC
+    - cron: "0 1 * * *"
+  workflow_dispatch: # also allow manual trigger
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Delete old runs
+        uses: styfle/delete-workflow-runs@v0.24.0
+        with:
+          workflow_id: 'gradle.yml' # exact workflow filename
+          keep: 3   # retain only the latest 3 runs
+          access_token: ${{ secrets.GITHUB_TOKEN }}

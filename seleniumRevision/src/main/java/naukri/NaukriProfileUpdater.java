@@ -10,7 +10,7 @@ import java.time.Duration;
 import java.util.HashMap;
 
 
-public class Updater implements NaukriConstants {
+public class NaukriProfileUpdater implements NaukriConstants {
     public static void main(String[] args) {
         int myRandInt  = getRandomNumber01(0,99,5);
         String resumeHeadlineSelected = resumeHeadline.get(myRandInt);

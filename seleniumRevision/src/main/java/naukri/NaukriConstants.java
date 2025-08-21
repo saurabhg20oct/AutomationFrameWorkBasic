@@ -8,9 +8,9 @@ import java.util.List;
 public interface NaukriConstants {
 
      By login = By.xpath("//a[contains(text(),'Login') or contains(@title,'Jobseeker Login')]");
-     By usernameInput = By.xpath("//label[text()='Email ID / Username']/following-sibling::input");
-     By passwordInput = By.xpath("//label[text()='Password']/following-sibling::input");
-     By loginBtn = By.xpath("//button[contains(@class,'loginButton')]");
+     By usernameInput = By.xpath("//input[@id='usernameField']");
+     By passwordInput = By.xpath("//input[@id='passwordField']");
+     By loginBtn = By.xpath("//button[text() = 'Login']");
      By modalClose = By.xpath("//*[contains(@class,'chatbot_Nav')]/div[contains(@class,'crossIcon')]");
      By viewProfile = By.xpath("//div[@class='view-profile-wrapper']/a[contains(@href,'/mnjuser/profile')]");
      By profileLoaded = By.xpath("//span[@class='fullname']");

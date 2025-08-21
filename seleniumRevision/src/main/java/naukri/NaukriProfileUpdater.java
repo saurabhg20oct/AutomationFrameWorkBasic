@@ -21,8 +21,8 @@ import java.util.Objects;
 
 public class NaukriProfileUpdater implements NaukriConstants {
     public static void main(String[] args) {
-        String secretUsername = "saurabh.g20oct@gmail.com";//System.getenv("NAUKRI_USERNAME");
-        String secretPassword = "G@rg7417343554";//System.getenv("NAUKRI_PASSWORD");
+        String secretUsername = System.getenv("NAUKRI_USERNAME");
+        String secretPassword = System.getenv("NAUKRI_PASSWORD");
         int myRandInt = getRandomNumber01(0, 99, 5);
         String resumeHeadlineSelected = resumeHeadline.get(myRandInt);
         myRandInt = getRandomNumber01(199, 9999, 2);
@@ -39,18 +39,18 @@ public class NaukriProfileUpdater implements NaukriConstants {
         System.out.println("Profile Summary Selected: " + profileSummarySelected);
 
         WebDriver driver = new ChromeDriver();
-        safeGet(driver, "naukri.com");
+        safeGet(driver, "https://www.naukri.com/nlogin/login");
         System.out.println(driver.getTitle() + " " + driver.getCurrentUrl());
         takeScreenshot(driver, "screenshots", "Naukri.com Page Loaded");
-        waitForPageToLoad(driver, 60, login);
-        takeScreenshot(driver, "screenshots", "JobseekerLogin");
-        scrollIntoView(driver, login);
-        driver.findElement(login).click();
+//        waitForPageToLoad(driver, 60, login);
+//        takeScreenshot(driver, "screenshots", "JobseekerLogin");
+//        scrollIntoView(driver, login);
+//        driver.findElement(login).click();
         waitForPageToLoad(driver, 60, usernameInput);
         driver.findElement(usernameInput)
                 .sendKeys(secretUsername);
         takeScreenshot(driver, "screenshots", "PreLoginUsernameEntered");
-        driver.findElement(passwordInput)
+        driver. findElement(passwordInput)
                 .sendKeys(secretPassword);
         takeScreenshot(driver, "screenshots", "PreLoginPwdEntered");
         scrollIntoView(driver, loginBtn);

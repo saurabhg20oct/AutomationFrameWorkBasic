@@ -1,5 +1,4 @@
 package naukri;
-import naukri.NaukriConstants;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -44,8 +43,8 @@ public class NaukriProfileUpdater implements NaukriConstants {
 
         WebDriver driver = new ChromeDriver(disableImages());
         driver.manage().window().maximize();
-        driver.get("https://www.naukri.com");
-        
+        safeGet(driver, "naukri.com");
+
         takeScreenshot(driver, "screenshots", "Naukri.com Page Loaded");
         waitForPageToLoad(driver,60,login);
         takeScreenshot(driver, "screenshots", "JobseekerLogin");
@@ -147,23 +146,33 @@ public class NaukriProfileUpdater implements NaukriConstants {
         wait.until(ExpectedConditions.alertIsPresent());
     }
 
-    public static ChromeOptions disableImages(){
+    public static void safeGet(WebDriver driver, String url) {
+        if (!url.startsWith("http")) {
+            url = "https://" + url;
+        } else if (url.startsWith("http://")) {
+            url = url.replaceFirst("http://", "https://");
+        }
+        driver.get(url);
+    }
+
+
+    public static ChromeOptions disableImages() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
-        options.addArguments("--headless=new");
         options.addArguments("--incognito");
-        options.addArguments("--headless=new");
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--disable-gpu");
         options.addArguments("--window-size=1920,1080");
-        HashMap<String, Object> imagesMap = new HashMap<>();
-        imagesMap.put("images",1);
-        HashMap<String, Object> prefmap = new HashMap<>();
-        prefmap.put("profile.default_content_setting_values",imagesMap);
-        options.setExperimentalOption("prefs",prefmap);
+        options.addArguments("--enable-features=UseDNSHttpsSvcb");
+        options.addArguments("--force-https");
+        options.addArguments("--enable-features=NetworkService,NetworkServiceInProcess");
+        HashMap<String, Object> prefs = new HashMap<>();
+        prefs.put("profile.default_content_setting_values.images", 2);
+        options.setExperimentalOption("prefs", prefs);
         return options;
     }
+
     public static void waitForElementToBeClickable(WebDriver driver, int seconds, By by){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(seconds));
         wait.until((ExpectedCondition<Boolean>) wd ->

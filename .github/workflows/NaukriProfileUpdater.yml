@@ -16,11 +16,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Java 21 (latest LTS)
+      - name: Set up Java 24 (latest LTS)
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '21'
+          java-version: '24'
           cache: gradle
 
       - name: Upgrade system packages
@@ -29,15 +29,20 @@ jobs:
           sudo apt-get -y upgrade
 
       - name: Install Google Chrome
+        uses: browser-actions/setup-chrome@v1
+      - name: Start virtual display
         run: |
-          sudo apt-get install -y google-chrome-stable
+          sudo apt-get install -y xvfb
+          Xvfb :99 -screen 0 1920x1080x24 > /dev/null 2>&1 &
+          export DISPLAY=:99
+          echo "DISPLAY=:99" >> $GITHUB_ENV	
 
       - name: Make gradlew executable
         run: chmod +x seleniumRevision/gradlew
 
       - name: Upgrade Gradle wrapper
         working-directory: seleniumRevision
-        run: ./gradlew wrapper --gradle-version 8.10.2 --distribution-type all
+        run: ./gradlew wrapper --gradle-version 9.0.0 --distribution-type all
 
       - name: Build with Gradle
         working-directory: seleniumRevision

@@ -11,13 +11,12 @@ public interface NaukriConstants {
      By usernameInput = By.xpath("//label[text()='Email ID / Username']/following-sibling::input");
      By passwordInput = By.xpath("//label[text()='Password']/following-sibling::input");
      By loginBtn = By.xpath("//button[contains(@class,'loginButton')]");
-     By pageLoadedToProfile = By.xpath("//div/*[text()='Saurabh Garg']");
      By modalClose = By.xpath("//*[contains(@class,'chatbot_Nav')]/div[contains(@class,'crossIcon')]");
      By viewProfile = By.xpath("//div[@class='view-profile-wrapper']/a[contains(@href,'/mnjuser/profile')]");
-     By profileLoaded = By.xpath("//div/span[text()='Saurabh Garg']");
+     By profileLoaded = By.xpath("//span[@class='fullname']");
      By uploadCV = By.xpath("//input[@id = 'attachCV']");
      By editResumeHeadLine = By.xpath("//div[@class='resumeHeadline']//span[text()='Resume headline']/following-sibling::span");
-     By resumeHeadLineTextArea = By.xpath("//textarea[contains(@class,'resumeHeadlineTxt')]");
+     By resumeHeadLineTextArea = By.xpath("//*[contains(@class,'resumeHeadlineTxt')]");
      By saveBtn = By.xpath("//button[@class='btn-dark-ot' and text()='Save']");
       By topSideProfile = By.xpath("//div[@class='nI-gNb-drawer']");
       By modalTitle = By.xpath("//div[@title='Saurabh Garg']");

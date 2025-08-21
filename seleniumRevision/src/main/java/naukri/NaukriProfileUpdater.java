@@ -19,20 +19,25 @@ import java.time.format.DateTimeFormatter;
 
 import java.time.Duration;
 
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Objects;
+
+import static java.util.Locale.filter;
 
 
 public class NaukriProfileUpdater implements NaukriConstants {
     public static void main(String[] args) {
-        String secretUsername = System.getenv("NAUKRI_USERNAME");
-        String secretPassword = System.getenv("NAUKRI_PASSWORD");
+        String secretUsername = "saurabh.g20oct@gmail.com";//System.getenv("NAUKRI_USERNAME");
+        String secretPassword = "G@rg7417343554";//System.getenv("NAUKRI_PASSWORD");
         int myRandInt  = getRandomNumber01(0,99,5);
         String resumeHeadlineSelected = resumeHeadline.get(myRandInt);
         myRandInt  = getRandomNumber01(199,9999,2);
         String resumePath = resume.get(myRandInt);
         myRandInt  = getRandomNumber01(199,9999,5);
         String profileSummarySelected = resumeHeadline.get(myRandInt);
-        while(profileSummarySelected == resumeHeadlineSelected){
+        while(Objects.equals(profileSummarySelected, resumeHeadlineSelected)){
             myRandInt  = getRandomNumber01(199,9999,4);
             profileSummarySelected = resumeHeadline.get(myRandInt);
         }
@@ -58,10 +63,10 @@ public class NaukriProfileUpdater implements NaukriConstants {
         takeScreenshot(driver, "screenshots", "PreLoginPwdEntered");
         driver.findElement(loginBtn).click();
         takeScreenshot(driver, "screenshots", "PostLogin");
-        waitForPageToLoad(driver,60,pageLoadedToProfile);
+        waitForPageToLoad(driver,60,viewProfile);
         System.out.println("Logged in to Portal, Profile Page Loaded");
         takeScreenshot(driver, "screenshots", "ProfileLoaded");
-        if(driver.findElement(modalClose).isDisplayed())
+        if(!driver.findElements(modalClose).isEmpty())
             driver.findElement(modalClose).click();
         driver.findElement(viewProfile).click();
         waitForPageToLoad(driver,60,profileLoaded);
@@ -70,6 +75,7 @@ public class NaukriProfileUpdater implements NaukriConstants {
         waitForElementToBeClickable(driver,60,editResumeHeadLine);
         System.out.println("CV Uploaded, Going to update Resume headline");
         driver.findElement(editResumeHeadLine).click();
+        waitForPageToLoad(driver,60,resumeHeadLineTextArea);
         WebElement textArea= driver.findElement(resumeHeadLineTextArea);
         textArea.click();
         textArea.clear();
@@ -83,6 +89,7 @@ public class NaukriProfileUpdater implements NaukriConstants {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center', inline: 'nearest'})", editBtn);
         waitForElementToBeClickable(driver,60,getProfileSummaryEditBtn);
         editBtn.click();
+        waitForPageToLoad(driver,60,profileSummaryEditTextArea);
         textArea = driver.findElement(profileSummaryEditTextArea);
         textArea.click();
         textArea.clear();
@@ -95,13 +102,10 @@ public class NaukriProfileUpdater implements NaukriConstants {
         driver.findElement(topSideProfile).click();
         waitForPageToLoad(driver,60,modalTitle);
         driver.findElement(logout).click();
-        waitForElementToBeClickable(driver,60,login);
-        System.out.println(" Logged out, Good bye for now :) ");
         afterSuite(driver);
     }
-    public static Path takeScreenshot(WebDriver driver, String folderPath, String filePrefix) {
+    public static void takeScreenshot(WebDriver driver, String folderPath, String filePrefix) {
         try {
-            // Ensure folder exists
             Path folder = Paths.get(folderPath);
             if (!Files.exists(folder)) {
                 Files.createDirectories(folder);
@@ -119,11 +123,9 @@ public class NaukriProfileUpdater implements NaukriConstants {
             Files.copy(srcFile.toPath(), screenshotPath);
 
             System.out.println("Screenshot saved at: " + screenshotPath.toAbsolutePath());
-            return screenshotPath;
 
         } catch (IOException e) {
             e.printStackTrace();
-            return null;
         }
     }
 

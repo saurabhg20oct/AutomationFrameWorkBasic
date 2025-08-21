@@ -41,7 +41,7 @@ public class NaukriProfileUpdater implements NaukriConstants {
         System.out.println("Resume Path: " + resumePath);
         System.out.println("Profile Summary Selected: "  + profileSummarySelected);
 
-        WebDriver driver = new ChromeDriver(disableImages());
+        WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         safeGet(driver, "naukri.com");
         System.out.println(driver.getTitle() + "   " + driver.getCurrentUrl());

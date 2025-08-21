@@ -44,7 +44,7 @@ public class NaukriProfileUpdater implements NaukriConstants {
         WebDriver driver = new ChromeDriver(disableImages());
         driver.manage().window().maximize();
         safeGet(driver, "naukri.com");
-
+        System.out.println(driver.getTitle() + "   " + driver.getCurrentUrl());
         takeScreenshot(driver, "screenshots", "Naukri.com Page Loaded");
         waitForPageToLoad(driver,60,login);
         takeScreenshot(driver, "screenshots", "JobseekerLogin");

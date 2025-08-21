@@ -7,6 +7,11 @@ plugins {
 repositories {
     mavenCentral()
 }
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(24) // set Java version here
+    }
+}
 
 dependencies {
     implementation 'org.seleniumhq.selenium:selenium-java:4.25.0'

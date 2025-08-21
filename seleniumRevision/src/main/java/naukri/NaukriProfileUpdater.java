@@ -66,8 +66,11 @@ public class NaukriProfileUpdater implements NaukriConstants {
         waitForPageToLoad(driver,60,viewProfile);
         System.out.println("Logged in to Portal, Profile Page Loaded");
         takeScreenshot(driver, "screenshots", "ProfileLoaded");
-        if(!driver.findElements(modalClose).isEmpty())
+        if(!driver.findElements(modalClose).isEmpty()){
+            System.out.println("naukri modal appeared");
             driver.findElement(modalClose).click();
+        }
+        waitForElementToBeClickable(driver,10,viewProfile);
         driver.findElement(viewProfile).click();
         waitForPageToLoad(driver,60,profileLoaded);
         driver.findElement(uploadCV).sendKeys(resumePath);

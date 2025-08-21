@@ -57,6 +57,7 @@ jobs:
           NAUKRI_PASSWORD: ${{ secrets.NAUKRI_PASSWORD }}
 
       - name: Upload screenshots
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: screenshots

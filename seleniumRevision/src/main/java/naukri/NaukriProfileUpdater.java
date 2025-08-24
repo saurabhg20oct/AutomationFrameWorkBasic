@@ -23,7 +23,7 @@ public class NaukriProfileUpdater implements NaukriConstants {
     public static void main(String[] args) {
         String secretUsername = System.getenv("NAUKRI_USERNAME");
         String secretPassword = System.getenv("NAUKRI_PASSWORD");
-        int myRandInt = getRandomNumber01(0, 99, 5);
+        System.out.println(secretUsername + "  " +secretPassword);
         String resumeHeadlineSelected = resumeHeadline.get(myRandInt);
         myRandInt = getRandomNumber01(199, 9999, 2);
         String resumePath = resume.get(myRandInt);

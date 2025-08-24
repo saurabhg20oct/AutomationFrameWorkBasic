@@ -23,8 +23,7 @@ public class NaukriProfileUpdater implements NaukriConstants {
     public static void main(String[] args) {
         String secretUsername = System.getenv("NAUKRI_USERNAME");
         String secretPassword = System.getenv("NAUKRI_PASSWORD");
-        System.out.println(secretUsername + secretPassword);
-        int myRandInt = getRandomNumber01(0, 99, 5);
+        System.out.println(secretUsername + "  " +secretPassword);
         String resumeHeadlineSelected = resumeHeadline.get(myRandInt);
         myRandInt = getRandomNumber01(199, 9999, 2);
         String resumePath = resume.get(myRandInt);
@@ -43,9 +42,10 @@ public class NaukriProfileUpdater implements NaukriConstants {
         safeGet(driver, "https://www.naukri.com/nlogin/login");
         System.out.println(driver.getTitle() + " " + driver.getCurrentUrl());
         takeScreenshot(driver, "screenshots", "Naukri.com Page Loaded");
-        waitForPageToLoad(driver, 60, login);
-        scrollIntoView(driver, login);
-        driver.findElement(login).click();
+//        waitForPageToLoad(driver, 60, login);
+//        takeScreenshot(driver, "screenshots", "JobseekerLogin");
+//        scrollIntoView(driver, login);
+//        driver.findElement(login).click();
         waitForPageToLoad(driver, 60, usernameInput);
         driver.findElement(usernameInput)
                 .sendKeys(secretUsername);

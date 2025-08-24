@@ -43,10 +43,7 @@ public class NaukriProfileUpdater implements NaukriConstants {
         safeGet(driver, "https://www.naukri.com/nlogin/login");
         System.out.println(driver.getTitle() + " " + driver.getCurrentUrl());
         takeScreenshot(driver, "screenshots", "Naukri.com Page Loaded");
-        waitForPageToLoad(driver, 60, login);
-        scrollIntoView(driver, login);
         waitForElementToBeClickable(driver,60,login);
-        driver.findElement(login).click();
         waitForPageToLoad(driver, 60, usernameInput);
         driver.findElement(usernameInput)
                 .sendKeys(secretUsername);

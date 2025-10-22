@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="cc12742a-982d-4045-bf8f-241f28b41ebd" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/naukri/ConsecutivePair.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/naukri/NaukriProfileUpdater.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/naukri/NaukriProfileUpdater.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/libs/seleniumRevision.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/NaukriProfileUpdater.class.uniqueId0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/fatJar/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/jar/MANIFEST.MF" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="31bGxkINiIuLEvZfSCQ3jbzz3pm" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.seleniumRevision [:naukri.ConsecutivePair.main()].executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.seleniumRevision [:naukri.NaukriProfileUpdater.main()].executor&quot;: &quot;Debug&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/saurabhgarg/Documents/GitHub/AutomationFrameWorkBasic/seleniumRevision&quot;
+  }
+}</component>
+  <component name="RunManager" selected="Application.ConsecutivePair">
+    <configuration name="ConsecutivePair" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <envs>
+        <env name="NAUKRI_USERNAME" value="saurabh.g20oct@gmail.com" />
+        <env name="NAUKRI_PASSWORD" value="G@rg7417343554" />
+      </envs>
+      <option name="MAIN_CLASS_NAME" value="naukri.ConsecutivePair" />
+      <module name="seleniumRevision.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="naukri.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NaukriProfileUpdater" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <envs>
+        <env name="NAUKRI_USERNAME" value="saurabh.g20oct@gmail.com" />
+        <env name="NAUKRI_PASSWORD" value="G@rg7417343554" />
+      </envs>
+      <option name="MAIN_CLASS_NAME" value="naukri.NaukriProfileUpdater" />
+      <module name="seleniumRevision.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="naukri.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <envs>
+        <env name="NAUKRI_USERNAME" value="saurabh.g20oct@gmail.com" />
+        <env name="NAUKRI_PASSWORD" value="G@rg7417343554" />
+      </envs>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="GradleRunConfiguration" factoryName="Gradle">
+      <ExternalSystemSettings>
+        <option name="env">
+          <map>
+            <entry key="NAUKRI_PASSWORD" value="G@rg7417343554" />
+            <entry key="NAUKRI_USERNAME" value="saurabh.g20oct@gmail.com" />
+          </map>
+        </option>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list />
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ConsecutivePair" />
+        <item itemvalue="Application.NaukriProfileUpdater" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cc12742a-982d-4045-bf8f-241f28b41ebd" name="Changes" comment="" />
+      <created>1755785606473</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1755785606473</updated>
+    </task>
+    <servers />
+  </component>
+</project>

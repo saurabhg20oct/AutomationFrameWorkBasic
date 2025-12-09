@@ -1,3 +1,5 @@
+# I don't own some/most of the material that is uploaded in this repo. I just Complile stuff here for further my learnings.
+
 # AutomationFrameWorkBasic
 
 ✅ 𝗣𝗹𝗮𝘆𝘄𝗿𝗶𝗴𝗵𝘁 + 𝗧𝘆𝗽𝗲𝗦𝗰𝗿𝗶𝗽𝘁 + 𝗔𝗜 𝗔𝗴𝗲𝗻𝘁𝘀 𝗖𝗵𝗲𝗰𝗸𝗹𝗶𝘀𝘁 𝗳𝗼𝗿 𝗔𝘂𝘁𝗼𝗺𝗮𝘁𝗶𝗼𝗻 𝗘𝗻𝗴𝗶𝗻𝗲𝗲𝗿𝘀
